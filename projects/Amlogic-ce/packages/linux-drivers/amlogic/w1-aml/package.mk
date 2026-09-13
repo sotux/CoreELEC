@@ -2,12 +2,12 @@
 # Copyright (C) 2022-present Team CoreELEC (https://coreelec.org)
 
 PKG_NAME="w1-aml"
-PKG_VERSION="d82514546680a10300f2aa8714ae81f298369ec7"
+PKG_VERSION="8079fa56a7786d0af3035505dd142e8c136ed2d7"
 PKG_SHA256=""
 PKG_ARCH="arm aarch64"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/CoreELEC/w1-aml"
-PKG_URL="https://github.com/CoreELEC/w1-aml/archive/${PKG_VERSION}.tar.gz"
+PKG_SITE="https://github.com/sotux/w1-aml"
+PKG_URL="https://github.com/sotux/w1-aml/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="${LINUX_DEPENDS}"
 PKG_LONGDESC="Amlogic W150S1 Linux driver"

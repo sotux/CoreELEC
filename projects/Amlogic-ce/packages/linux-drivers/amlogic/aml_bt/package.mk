@@ -2,12 +2,12 @@
 # Copyright (C) 2025-present Team CoreELEC (https://coreelec.org)
 
 PKG_NAME="aml_bt"
-PKG_VERSION="4673a7293cf78fed7cc5c0f7d0378a513dd0e70d"
+PKG_VERSION="6b0efbf473cbad458d4248d5f32c72230c39e70a"
 PKG_SHA256=""
 PKG_ARCH="aarch64"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/CoreELEC/aml_bt"
-PKG_URL="https://github.com/CoreELEC/aml_bt/archive/${PKG_VERSION}.tar.gz"
+PKG_SITE="https://github.com/sotux/aml_bt"
+PKG_URL="https://github.com/sotux/aml_bt/archive/${PKG_VERSION}.tar.gz"
 PKG_USETOKEN="yes"
 PKG_DEPENDS_TARGET="toolchain linux w1-aml w2-aml"
 PKG_NEED_UNPACK="${LINUX_DEPENDS}"
