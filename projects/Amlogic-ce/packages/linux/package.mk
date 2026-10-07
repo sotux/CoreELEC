@@ -17,13 +17,14 @@ PKG_PATCH_DIRS="$LINUX"
 
 case "$LINUX" in
   amlogic-4.9)
-    PKG_VERSION="50c8e8154c5aba3c7cd8438d04dd5fdd51733e41"
+    # phicomm-n1 branch of the kernel fork, carrying the Phicomm N1 device tree
+    PKG_VERSION="8c8f3ae38d228e0eb1cf08c9dc5574b446dac62b"
     PKG_SHA256=""
-    PKG_URL="https://github.com/CoreELEC/linux-amlogic/archive/$PKG_VERSION.tar.gz"
+    PKG_URL="https://github.com/sotux/linux-amlogic/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host"
     PKG_BUILD_PERF="no"
-    PKG_GIT_BRANCH="amlogic-4.9-20"
+    PKG_GIT_BRANCH="phicomm-n1"
     ;;
 esac
 

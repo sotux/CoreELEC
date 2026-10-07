@@ -10,6 +10,16 @@ done by placing the update package (`CoreELEC-Amlogic-ng.arm-*.tar`) in
 `/storage/.update/` and rebooting; `update.sh` refreshes `boot.ini`, `dtb.img`,
 `s905_autoscript` and `uInitrd` automatically.
 
+Build with:
+
+    make PROJECT=Amlogic-ce DEVICE=Amlogic-ng ARCH=arm image
+
+`ARCH` is forced to `arm` for `Amlogic-ng`, and `PROJECT` defaults to `Amlogic-ce`,
+so `make DEVICE=Amlogic-ng image` is enough. The kernel is fetched from the
+`phicomm-n1` branch of https://github.com/sotux/linux-amlogic (pinned by
+`PKG_VERSION` in `projects/Amlogic-ce/packages/linux/package.mk`), so that branch
+has to be pushed before building.
+
 # CoreELEC
 
 CoreELEC is a 'Just enough OS' Linux distribution for running the award-winning [Kodi](https://kodi.tv) software on popular low-cost hardware. CoreELEC is a minor fork of [LibreELEC](https://libreelec.tv), it's built by the community for the community. [CoreELEC website](http://coreelec.org).
