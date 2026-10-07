@@ -1,0 +1,36 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: CoreELEC <coreelec@coreelec.org>
+Date: Tue, 7 Oct 2026 15:00:00 +0000
+Subject: [PATCH] linux-user: do not redefine struct sched_attr
+
+syscall.c defines struct sched_attr unconditionally with the comment
+"sched_attr is not defined in glibc". That is no longer true: with
+glibc >= 2.41 (e.g. Debian 13) <bits/sched.h> pulls in
+<linux/sched/types.h>, which defines struct sched_attr, so building
+qemu:host fails with:
+
+  linux-user/syscall.c:362:8: error: redefinition of 'struct sched_attr'
+
+Guard the local definition with SCHED_ATTR_SIZE_VER0, which
+<linux/sched/types.h> defines alongside the struct.
+
+--- a/linux-user/syscall.c
++++ b/linux-user/syscall.c
+@@ -358,7 +358,8 @@
+ #define __NR_sys_sched_setaffinity __NR_sched_setaffinity
+ _syscall3(int, sys_sched_setaffinity, pid_t, pid, unsigned int, len,
+           unsigned long *, user_mask_ptr);
+-/* sched_attr is not defined in glibc */
++/* sched_attr may already be defined via linux/sched/types.h in newer toolchains */
++#ifndef SCHED_ATTR_SIZE_VER0
+ struct sched_attr {
+     uint32_t size;
+     uint32_t sched_policy;
+@@ -371,6 +372,7 @@
+     uint32_t sched_util_min;
+     uint32_t sched_util_max;
+ };
++#endif
+ #define __NR_sys_sched_getattr __NR_sched_getattr
+ _syscall4(int, sys_sched_getattr, pid_t, pid, struct sched_attr *, attr,
+           unsigned int, size, unsigned int, flags);
