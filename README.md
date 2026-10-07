@@ -1,3 +1,15 @@
+# CoreELEC for Phicomm N1
+
+This branch builds CoreELEC 21.3 (`Amlogic-ng`, kernel `amlogic-4.9`) for the Phicomm N1
+(Amlogic S905D). The device uses its vendor u-boot, which can only boot a plain
+`Image` together with a standalone `uInitrd`, hence the N1 specific `Phicomm_N1`
+subdevice in `projects/Amlogic-ce/devices/Amlogic-ng`.
+
+Install by writing the `CoreELEC-Amlogic-ng.arm-*.img.gz` to a USB drive. Upgrades are
+done by placing the update package (`CoreELEC-Amlogic-ng.arm-*.tar`) in
+`/storage/.update/` and rebooting; `update.sh` refreshes `boot.ini`, `dtb.img`,
+`s905_autoscript` and `uInitrd` automatically.
+
 # CoreELEC
 
 CoreELEC is a 'Just enough OS' Linux distribution for running the award-winning [Kodi](https://kodi.tv) software on popular low-cost hardware. CoreELEC is a minor fork of [LibreELEC](https://libreelec.tv), it's built by the community for the community. [CoreELEC website](http://coreelec.org).

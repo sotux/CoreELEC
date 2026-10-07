@@ -34,7 +34,10 @@
     BOOTLOADER="u-boot"
 
   # Kernel target
-    KERNEL_TARGET="Image.lzo"
+  # The Phicomm N1 u-boot can only boot a plain (uncompressed) Image with a separate
+  # initrd, so $KERNEL_TARGET must not be replaced by the Android boot image
+  # (see packages/linux/package.mk and bootloader/scripts/s905_autoscript.src)
+    KERNEL_TARGET="Image"
 
   # Kernel extra targets to build
     KERNEL_UBOOT_EXTRA_TARGET=""
@@ -151,7 +154,7 @@
     ENTWARE_ARCH="aarch64-k3.10"
 
   # CoreELEC Subdevices
-    SUBDEVICES="Odroid_N2 Odroid_N2L Odroid_C4 Odroid_HC4 LePotato LaFrite Radxa_Zero Radxa_Zero2"
+    SUBDEVICES="Phicomm_N1"
 
   # TEE supported SoC
     TEE_SOC="S905X4"

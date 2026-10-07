@@ -41,6 +41,13 @@ if [ "${SUBDEVICE}" != "Generic" ]; then
     mcopy "$LE_TMP/boot.ini" ::
   fi
 
+  # Phicomm N1 loads the standalone initrd together with the plain Image
+  if [ "${SUBDEVICE}" = "Phicomm_N1" ]; then
+    if [ -f "$RELEASE_DIR/3rdparty/bootloader/uInitrd" ]; then
+      mcopy "$RELEASE_DIR/3rdparty/bootloader/uInitrd" ::
+    fi
+  fi
+
   if [ "${SUBDEVICE:0:9}" == "Odroid_N2" -o "${SUBDEVICE}" == "Odroid_C4" -o "${SUBDEVICE}" == "Odroid_HC4" ]; then
     if [ -f "$RELEASE_DIR/3rdparty/bootloader/hk-boot-logo-1080.bmp.gz" ]; then
       mcopy $RELEASE_DIR/3rdparty/bootloader/hk-boot-logo-1080.bmp.gz "::/boot-logo-1080.bmp.gz"

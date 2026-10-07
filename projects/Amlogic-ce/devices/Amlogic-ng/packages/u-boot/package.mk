@@ -14,7 +14,8 @@ PKG_CANUPDATE="${PROJECT}*"
 PKG_NEED_UNPACK="$PROJECT_DIR/$PROJECT/bootloader "
 
 for PKG_SUBDEVICE in $SUBDEVICES; do
-  if [ "${PKG_SUBDEVICE}" != "Odroid_HC4" ]; then
+  # subdevices which keep their vendor u-boot (e.g. Phicomm_N1) have no u-boot package
+  if [ "${PKG_SUBDEVICE}" != "Odroid_HC4" -a -d "$PROJECT_DIR/$PROJECT/devices/$DEVICE/packages/u-boot-${PKG_SUBDEVICE}" ]; then
     PKG_DEPENDS_TARGET+=" u-boot-${PKG_SUBDEVICE}"
     PKG_NEED_UNPACK+=" $(get_pkg_directory u-boot-${PKG_SUBDEVICE})"
   fi

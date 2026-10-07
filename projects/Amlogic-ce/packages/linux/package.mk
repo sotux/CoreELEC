@@ -232,8 +232,12 @@ make_target() {
   fi
 
   if [ "$BUILD_ANDROID_BOOTIMG" = "yes" ]; then
+    # mkbootimg also generates the per-subdevice ${SUBDEVICE}_dtb.img used as dtb.img
     find_file_path bootloader/mkbootimg && source ${FOUND_PATH}
-    mv -f arch/$TARGET_KERNEL_ARCH/boot/boot.img arch/$TARGET_KERNEL_ARCH/boot/$KERNEL_TARGET
+    # devices booting a plain Image instead of the Android boot image must keep ${KERNEL_TARGET}
+    if [ "$KERNEL_TARGET" != "Image" ]; then
+      mv -f arch/$TARGET_KERNEL_ARCH/boot/boot.img arch/$TARGET_KERNEL_ARCH/boot/$KERNEL_TARGET
+    fi
   fi
 
   if [ "$PKG_BUILD_PERF" = "yes" ] ; then

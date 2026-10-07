@@ -90,6 +90,9 @@ for arg in $(cat /proc/cmdline); do
           *radxa_zero2)
             SUBDEVICE="Radxa_Zero2"
             ;;
+          *phicomm_n1)
+            SUBDEVICE="Phicomm_N1"
+            ;;
         esac
       fi
 
@@ -226,6 +229,20 @@ if [ -f $BOOT_ROOT/aml_autoscript ]; then
   if [ ${?} = 1 ]; then
     echo "Found custom CoreELEC BL301, running inject_bl301 tool..."
     inject_bl301 -Y &>/dev/null
+  fi
+fi
+
+# Phicomm_N1
+if [ "${SUBDEVICE}" = "Phicomm_N1" ]; then
+  echo "Updating Phicomm_N1 boot files..."
+  if [ -f /usr/share/bootloader/s905_autoscript ]; then
+    echo "Updating s905_autoscript..."
+    cp -p /usr/share/bootloader/s905_autoscript $BOOT_ROOT
+  fi
+
+  if [ -f ${UPDATE_DIR:-/storage/.update}/.tmp/*/3rdparty/bootloader/uInitrd ]; then
+    echo "Updating uInitrd..."
+    cp -p ${UPDATE_DIR:-/storage/.update}/.tmp/*/3rdparty/bootloader/uInitrd $BOOT_ROOT
   fi
 fi
 

@@ -4,4 +4,8 @@
 # Copyright (C) 2018-present Team CoreELEC (https://coreelec.org)
 
 mkdir -p $RELEASE_DIR/3rdparty/bootloader
+
+# Phicomm N1 boots a plain Image with a standalone initrd (see bootloader/mkimage)
+$TOOLCHAIN/bin/mkimage -C none -T ramdisk -A ${TARGET_KERNEL_ARCH} -d $INSTALL/../initramfs.cpio $RELEASE_DIR/3rdparty/bootloader/uInitrd
+
   cp -a $INSTALL/usr/share/bootloader/* $RELEASE_DIR/3rdparty/bootloader
